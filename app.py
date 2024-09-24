@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import Menu, Frame, Canvas, Scrollbar, Checkbutton, IntVar
+import graph as g
+import networkx as nx
 
 # Parametros globales
 numNodosDefault = 100       
@@ -51,6 +53,7 @@ def deselect_all():
         var.set(0)
     update_sections()
 
+
 def guardar_valor(valor, opcion):
     if(opcion == 1):
         global numeroNodos
@@ -85,7 +88,10 @@ def ventana_def_numero(encabezado, lim_inf, lim_sup, opcion, inc):
     boton_aceptar.pack(pady=10)
     
 def mostrar_grafo():
-    print("Ahora se mostraría el grafo")
+    G=nx.erdos_renyi_graph(numeroNodos,probAristas)
+    for node in G: G.nodes[node]['size']=15
+    g.DrawGraph(G)
+
     
        
 # Crear la ventana principal
