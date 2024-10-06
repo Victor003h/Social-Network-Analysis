@@ -4,10 +4,16 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
 import networkx as nx
+import webbrowser
+from threading import Timer
+
 
 # Inicializar la aplicación Dash
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = "Network Simulator"
+
+def open_browser():
+    webbrowser.open_new("http://localhost:8050/")
 
 # Función para generar el gráfico con Plotly
 def create_figure(graph=None):
@@ -252,4 +258,5 @@ def handle_callbacks(btn_generate, btn_submit, btn_modify_graph, btn_modify, btn
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    Timer(1, open_browser).start()
+    app.run_server(debug=False)
