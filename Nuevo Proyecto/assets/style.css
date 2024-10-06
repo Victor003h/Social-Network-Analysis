@@ -1,5 +1,5 @@
 body {
-    background-color: #FFD700; /* Amarillo */
+    background-color: #6A0DAD; /* Morado */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -12,8 +12,8 @@ body {
     height: 100vh;
 }
 
-.header, .footer {
-    background-color: #FFFFFF; /* Blanco */
+.header{
+    background-color: #4B0082; /* Índigo */
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -22,6 +22,45 @@ body {
     position: fixed;
     left: 0;
     z-index: 1;
+}
+
+.footer {
+    background-color: #4B0082; /* Índigo */
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    gap: 10px;
+}
+
+.button {
+    background-color: #00BFFF; /* Azul Celeste */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:disabled {
+    background-color: #cccccc; /* Gris para botones deshabilitados */
+    cursor: not-allowed;
+}
+
+.button:hover:enabled {
+    background-color: #009ACD; /* Azul más oscuro al pasar el ratón */
+    transform: scale(1.05);
 }
 
 .header {
@@ -40,28 +79,14 @@ body {
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #FFD700; /* Amarillo */
+    background-color: #6A0DAD; /* Morado */
     margin-top: 60px; /* Altura del header */
     margin-bottom: 60px; /* Altura del footer */
 }
 
-.button {
-    background-color: #00BFFF; /* Azul Celeste */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
-    transition: background-color 0.3s ease;
-}
-
 .button:hover {
     background-color: #009ACD; /* Azul más oscuro al pasar el ratón */
+    transform: scale(1.05);
 }
 
 .modal-content {
@@ -83,4 +108,52 @@ body {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* Ocultar el botón de depuración */
+.dash-debug-menu__outer, .dash-debug-menu {
+    display: none !important;
+}
+
+.label {
+    font-size: 16px;
+    color: white;
+    margin-right: 10px;
+}
+
+.dropdown-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.dropdown {
+    background-color: #FFFFFF; /* Fondo blanco */
+    color: #000000; /* Texto negro */
+    border: 1px solid #ccc; /* Borde gris */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dropdown:hover {
+    border-color: #00BFFF; /* Borde azul celeste al pasar el ratón */
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5); /* Sombra azul celeste */
+}
+
+.dropdown .dropdown-menu {
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra del menú */
+}
+
+.dropdown .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown .dropdown-item:hover {
+    background-color: #00BFFF; /* Fondo azul celeste al pasar el ratón */
+    color: #FFFFFF; /* Texto blanco al pasar el ratón */
 }
