@@ -157,3 +157,30 @@ body {
     background-color: #00BFFF; /* Fondo azul celeste al pasar el ratón */
     color: #FFFFFF; /* Texto blanco al pasar el ratón */
 }
+
+.arrow-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.arrow-button {
+    background-color: #00BFFF; /* Azul Celeste */
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.arrow-button:hover {
+    background-color: #009ACD; /* Azul más oscuro al pasar el ratón */
+    transform: scale(1.05);
+}

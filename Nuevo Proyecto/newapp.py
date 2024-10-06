@@ -82,18 +82,24 @@ app.layout = html.Div([
                 ],
                 value='option1',  # Opción por defecto seleccionada
                 className='dropdown',
-                style={'width': '200px', 'margin-left': '10px'}
+                style={'width': '200px'}
             )
-        ], className='dropdown-container', style={'display': 'flex', 'align-items': 'center', 'margin-left': 'auto', 'margin-right': '20px'})
+        ], className='dropdown-container', style={'display': 'flex', 'align-items': 'left', 'margin-left': 'auto', 'margin-right': '20px'})
     ], className='header'),
     html.Div([
-        dcc.Graph(id='graph', figure=create_figure())
+        dcc.Graph(id='graph', figure=create_figure(), style={'height': '80vh', 'width': '400vh'})
     ], className='content'),
     html.Footer([
         html.Button('Iniciar', id='button-start', className='button'),
         html.Button('Pausar', id='button-pause', className='button', disabled=True),
         html.Button('Continuar', id='button-resume', className='button', disabled=True),
         html.Button('Detener', id='button-stop', className='button', disabled=True),
+        html.Div([
+        html.Span("Anterior", className='label'),
+        html.Button('←', id='button-previous', className='arrow-button'),
+        html.Span("Siguiente", className='label'),
+        html.Button('→', id='button-next', className='arrow-button')
+    ], className='arrow-container', style={'display': 'flex', 'align-items': 'center', 'gap': '10px', 'margin-left': '20px'})
     ], className='footer', style={'justify-content': 'flex-start', 'gap': '10px', 'padding-left': '20px'}),
     dbc.Modal(
         [
@@ -163,14 +169,14 @@ G = nx.Graph()  # Inicializar el grafo
     [Input('button-generate', 'n_clicks'), Input('generate-button', 'n_clicks'),
      Input('button-modify-graph', 'n_clicks'), Input('modify-button', 'n_clicks'), Input('close-error', 'n_clicks'), Input('dropdown-modify', 'value'),
      Input('button-start', 'n_clicks'), Input('button-pause', 'n_clicks'), Input('button-resume', 'n_clicks'), Input('button-stop', 'n_clicks'),
-     Input('dropdown-model', 'value')],
+     Input('dropdown-model', 'value'), Input('button-previous', 'n_clicks'), Input('button-next', 'n_clicks')],
     [State('input-nodes', 'value'), State('input-probability', 'value'),
      State('dropdown-modify', 'value'), State('input-modify', 'value'), State('input-modify-2', 'value'),
      State('modal', 'is_open'), State('modify-modal', 'is_open'), State('error-modal', 'is_open')]
 )
 def handle_callbacks(btn_generate, btn_submit, btn_modify_graph, btn_modify, btn_close_error, modify_action,
                      btn_start, btn_pause, btn_resume, btn_stop,
-                     selected_value,
+                     selected_value, btn_previous, btn_next,
                      nodes, probability, action, modify_value, modify_value_2,
                      is_open, modify_is_open, error_is_open):
     global G, simulation_state, selected_model
@@ -235,8 +241,15 @@ def handle_callbacks(btn_generate, btn_submit, btn_modify_graph, btn_modify, btn
     elif button_id == 'button-stop':
         simulation_state = 'stopped'
         return create_figure(G), is_open, modify_is_open, error_is_open, "", {'display': 'none'}, False, True, True, True
+    elif button_id == 'button-previous':
+        # Lógica para modificar el grafo al presionar "Anterior"
+        return create_figure(G), is_open, modify_is_open, error_is_open, "", {'display': 'none'}, False, True, True, True
+    elif button_id == 'button-next':
+        # Lógica para modificar el grafo al presionar "Siguiente"
+        return create_figure(G), is_open, modify_is_open, error_is_open, "", {'display': 'none'}, False, True, True, True
 
     return create_figure(G), is_open, modify_is_open, error_is_open, "", {'display': 'none'}, False, True, True, True
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
